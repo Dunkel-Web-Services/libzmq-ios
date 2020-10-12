@@ -14,7 +14,7 @@ cd libsodium-ios
 bash libsodium.sh
 cd $ROOTDIR
 
-ARCHS=${ARCHS:-"armv7 armv7s arm64 i386 x86_64"}
+ARCHS=${ARCHS:-"armv7 armv7s arm64 x86_64"}
 DEVELOPER=$(xcode-select -print-path)
 LIPO=$(xcrun -sdk iphoneos -find lipo)
 #LIPO=lipo
@@ -100,16 +100,6 @@ do
             ;;
 
         arm64)
-	    PLATFORM="iPhoneOS"
-	    HOST="arm-apple-darwin"
-	    export BASEDIR="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer"
-	    export ISDKROOT="${BASEDIR}/SDKs/${PLATFORM}${SDK}.sdk"
-	    export CXXFLAGS="${OTHER_CXXFLAGS}"
-	    export CPPFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} -mios-version-min=${IOS_VERSION_MIN} ${OTHER_CPPFLAGS}"
-	    export LDFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} ${OTHER_LDFLAGS}"
-            ;;
-
-        i386)
 	    PLATFORM="iPhoneSimulator"
 	    HOST="${ARCH}-apple-darwin"
 	    export BASEDIR="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer"
