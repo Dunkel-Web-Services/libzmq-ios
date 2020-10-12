@@ -29,10 +29,10 @@ DSTDIR=${SCRIPTDIR}
 BUILDDIR="${DSTDIR}/libzmq_build"
 DISTDIR="${DSTDIR}/libzmq_dist"
 DISTLIBDIR="${DISTDIR}/lib"
-TARVER=4.1.5
+TARVER=4.3.3
 TARNAME="zeromq-$TARVER"
 TARFILE=${TARNAME}.tar.gz
-TARURL=https://github.com/zeromq/zeromq4-1/releases/download/v$TARVER/$TARFILE
+TARURL=https://github.com/zeromq/libzmq/releases/download/v$TARVER/$TARFILE
 
 # http://libwebp.webm.googlecode.com/git/iosbuild.sh
 # Extract the latest SDK version from the final field of the form: iphoneosX.Y
@@ -40,7 +40,7 @@ SDK=$(xcodebuild -showsdks \
     | grep iphoneos | sort | tail -n 1 | awk '{print substr($NF, 9)}'
     )
 
-IOS_VERSION_MIN=8.0
+IOS_VERSION_MIN=12.0
 OTHER_LDFLAGS=""
 OTHER_CFLAGS="-Os -Qunused-arguments"
 # Enable Bitcode
