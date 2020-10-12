@@ -79,47 +79,40 @@ do
     mkdir -p ${BUILDARCHDIR}
 
     case ${ARCH} in
-        armv7)
+		armv7)
 	    PLATFORM="iPhoneOS"
 	    HOST="${ARCH}-apple-darwin"
 	    export BASEDIR="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer"
 	    export ISDKROOT="${BASEDIR}/SDKs/${PLATFORM}${SDK}.sdk"
-	    export CXXFLAGS="${OTHER_CXXFLAGS}"
-	    export CPPFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} -mios-version-min=${IOS_VERSION_MIN} ${OTHER_CPPFLAGS}"
-	    export LDFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} ${OTHER_LDFLAGS}"
+	    export CFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} ${OTHER_CFLAGS}"
+	    export LDFLAGS="-mthumb -arch ${ARCH} -isysroot ${ISDKROOT}"
             ;;
-
         armv7s)
 	    PLATFORM="iPhoneOS"
 	    HOST="${ARCH}-apple-darwin"
 	    export BASEDIR="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer"
 	    export ISDKROOT="${BASEDIR}/SDKs/${PLATFORM}${SDK}.sdk"
-	    export CXXFLAGS="${OTHER_CXXFLAGS}"
-	    export CPPFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} -mios-version-min=${IOS_VERSION_MIN} ${OTHER_CPPFLAGS}"
-	    export LDFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} ${OTHER_LDFLAGS}"
+	    export CFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} ${OTHER_CFLAGS}"
+	    export LDFLAGS="-mthumb -arch ${ARCH} -isysroot ${ISDKROOT}"
             ;;
-
         arm64)
 	    PLATFORM="iPhoneSimulator"
 	    HOST="${ARCH}-apple-darwin"
 	    export BASEDIR="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer"
 	    export ISDKROOT="${BASEDIR}/SDKs/${PLATFORM}${SDK}.sdk"
-	    export CXXFLAGS="${OTHER_CXXFLAGS}"
-	    export CPPFLAGS="-m32 -arch ${ARCH} -isysroot ${ISDKROOT} -mios-version-min=${IOS_VERSION_MIN} ${OTHER_CPPFLAGS}"
-	    export LDFLAGS="-m32 -arch ${ARCH} ${OTHER_LDFLAGS}"
+	    export CFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} -miphoneos-version-min=${SDK} ${OTHER_CFLAGS}"
+	    export LDFLAGS="-m32 -arch ${ARCH}"
             ;;
-
         x86_64)
 	    PLATFORM="iPhoneSimulator"
 	    HOST="${ARCH}-apple-darwin"
 	    export BASEDIR="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer"
 	    export ISDKROOT="${BASEDIR}/SDKs/${PLATFORM}${SDK}.sdk"
-	    export CXXFLAGS="${OTHER_CXXFLAGS}"
-	    export CPPFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} -mios-version-min=${IOS_VERSION_MIN} ${OTHER_CPPFLAGS}"
-	    export LDFLAGS="-arch ${ARCH} ${OTHER_LDFLAGS}"
-	    echo "LDFLAGS $LDFLAGS"
+	    export CFLAGS="-arch ${ARCH} -isysroot ${ISDKROOT} -miphoneos-version-min=${SDK} ${OTHER_CFLAGS}"
+	    export LDFLAGS="-arch ${ARCH}"
             ;;
         *)
+		echo "LDFLAGS $LDFLAGS"
 	    echo "Unsupported architecture ${ARCH}"
 	    exit 1
             ;;
